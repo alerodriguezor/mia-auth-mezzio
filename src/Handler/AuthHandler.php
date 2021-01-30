@@ -21,6 +21,9 @@ class AuthHandler extends \Mia\Core\Middleware\MiaBaseMiddleware
     {
         // obtener accessToken
         $accessToken = $this->getAccessToken($request);
+        if(isset($_SERVER['HTTP_X_API_KEY'])){
+            $accessToken = $_SERVER['HTTP_X_API_KEY'];
+        }
         // Buscamos el Token en la DB
         $row = \Mia\Auth\Model\MIAAccessToken::where('access_token', $accessToken)->first();
         // Validar AccessToken
