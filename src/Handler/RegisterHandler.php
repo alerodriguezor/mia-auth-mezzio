@@ -52,7 +52,7 @@ class RegisterHandler extends \Mia\Core\Request\MiaRequestHandler
             
             /* @var $sendgrid \Mobileia\Expressive\Mail\Service\Sendgrid */
             $sendgrid = $request->getAttribute('Sendgrid');
-            $sendgrid->send($account->email, 'New User', 'newUser.phtml', [
+            $sendgrid->send($account->email, 'new-user', [
                 'firstname' => $account->firstname,
                 'email' => $account->email,
                 'account' => $account,

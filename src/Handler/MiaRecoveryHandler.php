@@ -31,7 +31,7 @@ class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
         
         /* @var $sendgrid \Mobileia\Expressive\Mail\Service\Sendgrid */
         $sendgrid = $request->getAttribute('Sendgrid');
-        $sendgrid->send($account->email, 'Recovery Password', 'recoveryPassword.phtml', [
+        $sendgrid->send($account->email, 'recovery-password', [
             'firstname' => $account->firstname,
             'email' => $account->email,
             'token' => $token
