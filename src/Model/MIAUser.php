@@ -1,5 +1,79 @@
 <?php namespace Mia\Auth\Model;
 
+/**
+ * Description of Model
+ * @property int $id User ID
+ * @property int $mia_id MIA ID
+ * @property string $firstname Description for variable
+ * @property string $lastname Description for variable
+ * @property string $email Description for variable
+ * @property string $photo URL of photo
+ * @property mixed $phone Description for variable
+ * @property int $role Description for variable
+ * @property int $status Description for variable
+ * @property int $is_notification Description for variable
+ * @property mixed $created_at Description for variable
+ * @property mixed $updated_at Description for variable
+ *
+ * @OA\Schema()
+ * @OA\Property(
+ *  property="id",
+ *  type="bigint(20)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="firstname",
+ *  type="varchar(100)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="lastname",
+ *  type="varchar(100)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="email",
+ *  type="varchar(250)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="photo",
+ *  type="text",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="phone",
+ *  type="varchar(50)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="role",
+ *  type="int(2)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="status",
+ *  type="int(1)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="is_notification",
+ *  type="int(1)",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="created_at",
+ *  type="datetime",
+ *  description=""
+ * )
+ * @OA\Property(
+ *  property="updated_at",
+ *  type="datetime",
+ *  description=""
+ * )
+ *
+ * @author matiascamiletti
+ */
 class MIAUser extends \Illuminate\Database\Eloquent\Model
 {
     const ROLE_ADMIN = 1;

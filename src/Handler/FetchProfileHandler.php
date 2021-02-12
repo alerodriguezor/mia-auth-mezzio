@@ -4,6 +4,16 @@ namespace Mia\Auth\Handler;
 
 /**
  * Description of FetchProfileHandler
+ * 
+ * @OA\Post(
+ *     path="/mia-user/me",
+ *     summary="Get data of current user",
+ *     @OA\Response(
+ *          response=200,
+ *          description="successful operation",
+ *          @OA\JsonContent(ref="#/components/schemas/MIAUser")
+ *     )
+ * )
  *
  * @author matiascamiletti
  */

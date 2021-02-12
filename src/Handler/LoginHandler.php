@@ -4,6 +4,16 @@ namespace Mia\Auth\Handler;
 
 /**
  * Description of LoginInternalHandler
+ * 
+ * @OA\Post(
+ *     path="/mia-user/login",
+ *     summary="Login User",
+ *     @OA\Response(
+ *          response=200,
+ *          description="successful operation",
+ *          @OA\JsonContent(ref="#/components/schemas/MIAUser")
+ *     )
+ * )
  *
  * @author matiascamiletti
  */
