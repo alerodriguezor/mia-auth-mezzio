@@ -2,6 +2,8 @@
 
 namespace Mia\Auth\Handler;
 
+use Mia\Auth\Helper\JwtHelper;
+
 /**
  * Description of LoginInternalHandler
  * 
@@ -19,6 +21,14 @@ namespace Mia\Auth\Handler;
  */
 class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
 {
+    use JwtHelper;
+
+    public function __construct($config)
+    {
+        // Setear configuración inicial
+        $this->setConfig($config);
+    }
+
     public function handle(\Psr\Http\Message\ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
         // Obtener parametros obligatorios
@@ -33,6 +43,16 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
         if(!\Mia\Auth\Model\MIAUser::verifyPassword($password, $account->password)){
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, 'Password is not correct');
         }
+        // Verify method
+        if($this->method == 'jwt'){
+            return $this->useJwt($account);
+        }
+
+        return $this->useApiKey($request, $account);
+    }
+
+    protected function useApiKey(\Psr\Http\Message\ServerRequestInterface $request, \Mia\Auth\Model\MIAUser $account): \Psr\Http\Message\ResponseInterface
+    {
         // Generar nuevo AccessToken
         $token = new \Mia\Auth\Model\MIAAccessToken();
         $token->user_id = $account->id;
@@ -47,4 +67,21 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
                 array('access_token' => $token->toArray(), 'user' => $account->toArray())
         );
     }
+
+    protected function useJwt(\Mia\Auth\Model\MIAUser $account): \Psr\Http\Message\ResponseInterface
+    {
+        $accessToken = '';
+        try {
+            $accessToken = $this->generateToken($account->id, $account->email);
+        } catch (\Exception $th) {
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, 'Problem with generate token');
+        }
+
+        $data = $account->toArray();
+        $data['token_type'] = 'bearer';
+        $data['access_token'] = $accessToken;
+
+        return new \Mia\Core\Diactoros\MiaJsonResponse($data);
+    }
+
 }
