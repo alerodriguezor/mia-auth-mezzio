@@ -8,6 +8,7 @@ namespace Mia\Auth\Handler;
  * @OA\Post(
  *     path="/mia-auth/recovery",
  *     summary="Recovery Password",
+ *     tags={"Authentication"},
  *     @OA\RequestBody(
  *         description="Info of User",
  *         required=true,

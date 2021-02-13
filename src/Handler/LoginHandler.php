@@ -10,6 +10,7 @@ use Mia\Auth\Helper\JwtHelper;
  * @OA\Post(
  *     path="/mia-auth/login",
  *     summary="Login User",
+ *     tags={"Authentication"},
  *     @OA\RequestBody(
  *         description="Login user",
  *         required=true,
