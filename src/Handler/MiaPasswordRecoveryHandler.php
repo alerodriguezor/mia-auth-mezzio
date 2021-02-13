@@ -23,7 +23,7 @@ class MiaPasswordRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
         // Buscar si existe el token
         $recovery = \Mia\Auth\Model\MIARecovery::where('user_id', $account->id)->where('token', $token)->first();
         if($recovery === null){
-            return new \Mia\Diactoros\MiaJsonErrorResponse(-1, 'El token es incorrecto');
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'El token es incorrecto');
         }
         $recovery->status = \Mia\Auth\Model\MIARecovery::STATUS_USED;
         $recovery->save();
