@@ -61,11 +61,11 @@ class AuthHandler extends \Mia\Core\Middleware\MiaBaseMiddleware
             $payload = $this->decodeToken(str_replace('Bearer ', '', $request->getHeaderLine('Authorization')));
             // Obtener usuario
             $user = \Mia\Auth\Repository\MIAUserRepository::findByID($payload->uid);
-            // Obtener Usuario para guardarlo
-            return $handler->handle($request->withAttribute(\Mia\Auth\Model\MIAUser::class, $user));
         } catch (\Exception $th) {
             return new MiaJsonErrorResponse(-2, 'Authorization failed');
         }
+        // Obtener Usuario para guardarlo
+        return $handler->handle($request->withAttribute(\Mia\Auth\Model\MIAUser::class, $user));
     }
 
     /**
