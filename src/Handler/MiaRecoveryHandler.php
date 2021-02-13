@@ -3,7 +3,32 @@
 namespace Mia\Auth\Handler;
 
 /**
- * Description of MiaRecoveryHandler
+ * Description of MiaRecoveryHanlder
+ * 
+ * @OA\Post(
+ *     path="/mia-auth/recovery",
+ *     summary="Recovery Password",
+ *     @OA\RequestBody(
+ *         description="Info of User",
+ *         required=true,
+ *         @OA\MediaType(
+ *             mediaType="application/json",                 
+ *             @OA\Schema(
+ *                  @OA\Property(
+ *                      property="email",
+ *                      type="string",
+ *                      description="Email of user",
+ *                      example="matias@agencycoda.com"
+ *                  )
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *          response=200,
+ *          description="successful operation",
+ *          @OA\JsonContent(ref="#/components/schemas/MIAUser")
+ *     )
+ * )
  *
  * @author matiascamiletti
  */
