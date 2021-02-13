@@ -58,7 +58,7 @@ class AuthHandler extends \Mia\Core\Middleware\MiaBaseMiddleware
     {
         try {
             // Process Token
-            $payload = $this->decodeToken($request->getHeaderLine('Bearer'));
+            $payload = $this->decodeToken(str_replace('Bearer ', '', $request->getHeaderLine('Authorization')));
             // Obtener usuario
             $user = \Mia\Auth\Repository\MIAUserRepository::findByID($payload->uid);
             // Obtener Usuario para guardarlo
