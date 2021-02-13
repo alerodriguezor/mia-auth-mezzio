@@ -8,8 +8,29 @@ use Mia\Auth\Helper\JwtHelper;
  * Description of LoginInternalHandler
  * 
  * @OA\Post(
- *     path="/mia-user/login",
+ *     path="/mia-auth/login",
  *     summary="Login User",
+ *     @OA\RequestBody(
+ *         description="Login user",
+ *         required=true,
+ *         @OA\MediaType(
+ *             mediaType="application/json",                 
+ *             @OA\Schema(
+ *                  @OA\Property(
+ *                      property="email",
+ *                      type="string",
+ *                      description="Email of user",
+ *                      example="matias@agencycoda.com"
+ *                  ),
+ *                  @OA\Property(
+ *                      property="password",
+ *                      type="string",
+ *                      description="Password of user",
+ *                      example="123Qwerty"
+ *                  )
+ *             )
+ *         )
+ *     ),
  *     @OA\Response(
  *          response=200,
  *          description="successful operation",
