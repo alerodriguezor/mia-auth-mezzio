@@ -7,7 +7,7 @@ use Mia\Auth\Model\MIARole;
 /**
  * Description of ListHandler
  * 
- * @OA\Post(
+ * @OA\Get(
  *     path="/mia-auth/role/list",
  *     summary="Get all roles",
  *     @OA\Response(
