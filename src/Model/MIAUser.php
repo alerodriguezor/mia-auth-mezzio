@@ -18,57 +18,57 @@
  * @OA\Schema()
  * @OA\Property(
  *  property="id",
- *  type="bigint(20)",
+ *  type="integer",
  *  description=""
  * )
  * @OA\Property(
  *  property="firstname",
- *  type="varchar(100)",
+ *  type="string",
  *  description=""
  * )
  * @OA\Property(
  *  property="lastname",
- *  type="varchar(100)",
+ *  type="string",
  *  description=""
  * )
  * @OA\Property(
  *  property="email",
- *  type="varchar(250)",
+ *  type="string",
  *  description=""
  * )
  * @OA\Property(
  *  property="photo",
- *  type="text",
+ *  type="string",
  *  description=""
  * )
  * @OA\Property(
  *  property="phone",
- *  type="varchar(50)",
+ *  type="string",
  *  description=""
  * )
  * @OA\Property(
  *  property="role",
- *  type="int(2)",
+ *  type="integer",
  *  description=""
  * )
  * @OA\Property(
  *  property="status",
- *  type="int(1)",
+ *  type="integer",
  *  description=""
  * )
  * @OA\Property(
  *  property="is_notification",
- *  type="int(1)",
+ *  type="integer",
  *  description=""
  * )
  * @OA\Property(
  *  property="created_at",
- *  type="datetime",
+ *  type="date",
  *  description=""
  * )
  * @OA\Property(
  *  property="updated_at",
- *  type="datetime",
+ *  type="date",
  *  description=""
  * )
  *
