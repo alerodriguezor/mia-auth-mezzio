@@ -31,6 +31,7 @@ class ConfigProvider
             'factories' => [
                 \Mia\Auth\Handler\AuthHandler::class => \Mia\Auth\Factory\AuthHandlerFactory::class,
                 \Mia\Auth\Handler\LoginHandler::class => \Mia\Auth\Factory\LoginHandlerFactory::class,
+                \Mia\Auth\Handler\Social\GoogleSignInHandler::class => \Mia\Auth\Factory\GoogleSignInHandlerFactory::class,
             ],
         ];
     }
