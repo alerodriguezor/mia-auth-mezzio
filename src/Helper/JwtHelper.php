@@ -37,6 +37,24 @@ trait JwtHelper
     /**
      * 
      */
+    protected function useJwtWithResponse(\Mia\Auth\Model\MIAUser $account): \Psr\Http\Message\ResponseInterface
+    {
+        $accessToken = '';
+        try {
+            $accessToken = $this->generateToken($account->id, $account->email);
+        } catch (\Exception $th) {
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, 'Problem with generate token');
+        }
+
+        $data = $account->toArray();
+        $data['token_type'] = 'bearer';
+        $data['access_token'] = $accessToken;
+
+        return new \Mia\Core\Diactoros\MiaJsonResponse($data);
+    }
+    /**
+     * 
+     */
     public function generateToken($userId, $email)
     {
         return JWT::encode(array(

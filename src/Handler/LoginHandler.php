@@ -67,7 +67,7 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
         }
         // Verify method
         if($this->method == 'jwt'){
-            return $this->useJwt($account);
+            return $this->useJwtWithResponse($account);
         }
 
         return $this->useApiKey($request, $account);
@@ -88,22 +88,6 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
         return new \Mia\Core\Diactoros\MiaJsonResponse(
                 array('access_token' => $token->toArray(), 'user' => $account->toArray())
         );
-    }
-
-    protected function useJwt(\Mia\Auth\Model\MIAUser $account): \Psr\Http\Message\ResponseInterface
-    {
-        $accessToken = '';
-        try {
-            $accessToken = $this->generateToken($account->id, $account->email);
-        } catch (\Exception $th) {
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, 'Problem with generate token');
-        }
-
-        $data = $account->toArray();
-        $data['token_type'] = 'bearer';
-        $data['access_token'] = $accessToken;
-
-        return new \Mia\Core\Diactoros\MiaJsonResponse($data);
     }
 
 }

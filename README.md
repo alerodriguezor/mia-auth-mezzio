@@ -34,9 +34,17 @@ $user = $request->getAttribute(\Mia\Auth\Model\MIAUser::class);
     $app->route('/mia-auth/me', [\Mia\Auth\Handler\AuthInternalHandler::class, Mia\Auth\Handler\FetchProfileHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.me');
     
 
-    $app->route('/mia-auth/google-signin', [Mia\Auth\Handler\GoogleSignInHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.google-signin');
+    $app->route('/mia-auth/login-with-google', [Mia\Auth\Handler\Social\GoogleSignInHandler::class], ['POST', 'OPTIONS', 'HEAD'], 'mia_auth.login-with-gogle');
     $app->route('/mia-auth/apple-signin', [Mia\Auth\Handler\AppleSignInHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.apple-signin');
     $app->route('/mia-auth/register-device', [\Mia\Auth\Handler\AuthInternalHandler::class, Mia\Auth\Handler\RegisterDeviceHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.register-device');
 
     $app->route('/mia-auth/role/list', [Mia\Auth\Handler\Role\ListHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.role-list');
 ```
+
+# Login con Google (with Firebase)
+1. Activar Authentication en firebase
+2. Agregar dominio personalizado (Opcional)
+3. Activar login con Google
+4. Ingresar a cuentas de servicios en firebase y generar nueva clave
+5. Guardar clave dentro del repositorio de la API
+6. Configurar archivo config.
