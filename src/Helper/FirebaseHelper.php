@@ -41,4 +41,11 @@ class FirebaseHelper
 
         return null;
     }
+    /**
+     * @return Firestore
+     */
+    public function initFirestone()
+    {
+        return $this->service->createFirestore();
+    }
 }
