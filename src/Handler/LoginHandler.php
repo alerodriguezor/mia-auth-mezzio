@@ -68,9 +68,30 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
         // Verify method
         if($this->method == 'jwt'){
             return $this->useJwtWithResponse($account);
+        }else if ($this->method == 'api-key-v2') {
+            return $this->useApiKeyV2($request, $account);
         }
 
         return $this->useApiKey($request, $account);
+    }
+
+    protected function useApiKeyV2(\Psr\Http\Message\ServerRequestInterface $request, \Mia\Auth\Model\MIAUser $account): \Psr\Http\Message\ResponseInterface
+    {
+        // Generar nuevo AccessToken
+        $token = new \Mia\Auth\Model\MIAAccessToken();
+        $token->user_id = $account->id;
+        $token->access_token = \Mia\Auth\Model\MIAAccessToken::generateAccessToken();
+        $token->expires = \Mia\Auth\Model\MIAAccessToken::generateExpires();
+        $token->platform = $this->getParam($request, 'platform', \Mia\Auth\Model\MIAAccessToken::PLATFORM_WEB);
+        $token->version = $this->getParam($request, 'version', '');
+        $token->device_data = $this->getParam($request, 'device_data', '');
+        $token->save();
+
+        $data = $account->toArray();
+        $data['token_type'] = 'none';
+        $data['access_token'] = $token->access_token;
+
+        return new \Mia\Core\Diactoros\MiaJsonResponse($data);
     }
 
     protected function useApiKey(\Psr\Http\Message\ServerRequestInterface $request, \Mia\Auth\Model\MIAUser $account): \Psr\Http\Message\ResponseInterface
