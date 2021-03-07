@@ -6,7 +6,7 @@ namespace Mia\Auth\Middleware;
  *
  * @author matiascamiletti
  */
-class MiaAuthMiddleware extends MiaAuthMiddleware
+class MiaRoleAuthMiddleware extends MiaAuthMiddleware
 {
     /**
      * ID de roles que se van a verificar.
