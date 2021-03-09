@@ -5,7 +5,7 @@ namespace Mia\Auth\Handler;
 use Mia\Auth\Helper\JwtHelper;
 
 /**
- * Description of LoginInternalHandler
+ * Description of LoginHandler
  * 
  * @OA\Post(
  *     path="/mia-auth/login",

@@ -3,7 +3,28 @@
 namespace Mia\Auth\Handler;
 
 /**
- * Description of RegisterInternalHandler
+ * Description of RegisterHandler
+ * 
+ * @OA\Post(
+ *     path="/mia-auth/register",
+ *     summary="Register User",
+ *     tags={"Authentication"},
+ *     @OA\RequestBody(
+ *         description="Register user",
+ *         required=true,
+ *         @OA\MediaType(
+ *             mediaType="application/json",                 
+ *             @OA\Schema(
+ *                  @OA\JsonContent(ref="#/components/schemas/MIAUser")
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *          response=200,
+ *          description="successful operation",
+ *          @OA\JsonContent(ref="#/components/schemas/MIAUser")
+ *     )
+ * )
  *
  * @author matiascamiletti
  */
