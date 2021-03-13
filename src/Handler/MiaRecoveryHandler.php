@@ -55,13 +55,18 @@ class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
         $recovery->token = $token;
         $recovery->save();
         
-        /* @var $sendgrid \Mobileia\Expressive\Mail\Service\Sendgrid */
+        /* @var $sendgrid \Mia\Mail\Service\Sendgrid */
         $sendgrid = $request->getAttribute('Sendgrid');
-        $sendgrid->send($account->email, 'recovery-password', [
+        $result = $sendgrid->send($account->email, 'recovery-password', [
             'firstname' => $account->firstname,
             'email' => $account->email,
             'token' => $token
         ]);
+
+        if($result === false){
+            return new \Mia\Core\Diactoros\MiaJsonResponse(false);
+        }
+
         // Devolvemos datos del usuario
         return new \Mia\Core\Diactoros\MiaJsonResponse(true);
     }
