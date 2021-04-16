@@ -4,6 +4,27 @@ namespace Mia\Auth\Handler;
 
 /**
  * Description of UpdateProfileHandler
+ * 
+ * @OA\Post(
+ *     path="/mia-auth/update-profile",
+ *     summary="Update User",
+ *     tags={"Authentication"},
+ *     @OA\RequestBody(
+ *         description="Update user",
+ *         required=true,
+ *         @OA\MediaType(
+ *             mediaType="application/json",                 
+ *             @OA\Schema(
+ *                  @OA\JsonContent(ref="#/components/schemas/MIAUser")
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *          response=200,
+ *          description="successful operation",
+ *          @OA\JsonContent(ref="#/components/schemas/MIAUser")
+ *     )
+ * )
  *
  * @author matiascamiletti
  */
