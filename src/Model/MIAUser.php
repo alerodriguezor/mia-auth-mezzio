@@ -79,6 +79,10 @@ class MIAUser extends \Illuminate\Database\Eloquent\Model
     const ROLE_ADMIN = 1;
     const ROLE_GENERAL = 0;
 
+    const STATUS_PENDING = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_BLOCKED = 2;
+
     protected $table = 'mia_user';
     /**
      * Campos que se ocultan al obtener los registros
