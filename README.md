@@ -45,6 +45,7 @@ $user = $request->getAttribute(\Mia\Auth\Model\MIAUser::class);
     $app->route('/mia-notification/read-all', [\Mia\Auth\Handler\AuthHandler::class, Mia\Auth\Handler\Notification\ReadAllHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_notification.read-all');
 
     $app->route('/user/list', [\Mia\Auth\Handler\AuthHandler::class, new \Mia\Auth\Middleware\MiaRoleAuthMiddleware([MIAUser::ROLE_ADMIN]), \Mia\Auth\Handler\User\ListHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'user.list');
+    $app->route('/user/block', [\Mia\Auth\Handler\AuthHandler::class, new \Mia\Auth\Middleware\MiaRoleAuthMiddleware([MIAUser::ROLE_ADMIN]), \Mia\Auth\Handler\User\BlockHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'user.block');
 ```
 
 # Login con Google (with Firebase)
