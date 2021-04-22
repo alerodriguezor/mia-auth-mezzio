@@ -13,8 +13,8 @@
         "agencycoda/mia-core-mezzio": "dev-main",
         "agencycoda/mia-eloquent-mezzio": "dev-main",
         "laminas/laminas-crypt": "^3.3",
-        "firebase/php-jwt": "^5.2",
-        "kreait/firebase-php": "^5.14"
+        "firebase/php-jwt": "5.2.1",
+        "kreait/firebase-php": "5.14.1"
     },
     "autoload": {
         "psr-4": {
