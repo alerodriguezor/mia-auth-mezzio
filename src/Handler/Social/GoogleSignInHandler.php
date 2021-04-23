@@ -68,7 +68,6 @@ class GoogleSignInHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         $nameData = StringHelper::splitName($user->displayName);
         // Creamos cuenta
         $account = new \Mia\Auth\Model\MIAUser();
-        $account->mia_id = 0;
         $account->firstname = $nameData[0];
         $account->lastname = $nameData[1];
         $account->email = $user->email;

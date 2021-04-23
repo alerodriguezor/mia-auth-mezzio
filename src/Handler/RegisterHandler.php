@@ -49,7 +49,6 @@ class RegisterHandler extends \Mia\Core\Request\MiaRequestHandler
         }
         // Creamos cuenta
         $account = new \Mia\Auth\Model\MIAUser();
-        $account->mia_id = 0;
         $account->firstname = $this->getParam($request, 'firstname', '');
         if($account->firstname == ''){
             $account->firstname = 'empty';

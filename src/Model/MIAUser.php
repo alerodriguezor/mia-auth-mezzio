@@ -3,7 +3,6 @@
 /**
  * Description of Model
  * @property int $id User ID
- * @property int $mia_id MIA ID
  * @property string $firstname Description for variable
  * @property string $lastname Description for variable
  * @property string $email Description for variable
