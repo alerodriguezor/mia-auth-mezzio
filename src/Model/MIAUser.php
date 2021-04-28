@@ -112,4 +112,17 @@ class MIAUser extends \Illuminate\Database\Eloquent\Model
         $bcrypt->setCost(10);
         return $bcrypt->verify($password, $hash);
     }
+
+    /**
+     * 
+     * @return void
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+        
+        static::addGlobalScope('exclude', function (\Illuminate\Database\Eloquent\Builder $builder) {
+            $builder->where('mia_user.deleted', 0);
+        });
+    }
 }
