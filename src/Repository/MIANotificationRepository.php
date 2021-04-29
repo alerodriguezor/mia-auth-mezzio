@@ -28,4 +28,17 @@ class MIANotificationRepository
 
         return $query->paginate($configure->getLimit(), ['*'], 'page', $configure->getPage());
     }
+
+    public static function create($creatorId, $userId, $type, $itemId, $data, $caption = '')
+    {
+        $row = new MIANotification();
+        $row->creator_id = $creatorId;
+        $row->user_id = $userId;
+        $row->type_id = $type;
+        $row->item_id = $itemId;
+        $row->data = $data;
+        $row->caption = $caption;
+        $row->save();
+        return $row;
+    }
 }

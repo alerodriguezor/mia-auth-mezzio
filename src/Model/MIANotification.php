@@ -21,5 +21,10 @@
  */
 class MIANotification extends \Illuminate\Database\Eloquent\Model
 {
+    /**
+     * Name of table
+     */
     protected $table = 'mia_notification';
+
+    protected $casts = ['data' => 'array'];
 }
