@@ -35,6 +35,11 @@ trait JwtHelper
      */
     protected $expire = 'P15D';
     /**
+     * If valid status of user
+     * Si valida el estado de la cuenta del  usuario
+     */
+    protected $validStatus = false;
+    /**
      * 
      */
     protected function useJwtWithResponse(\Mia\Auth\Model\MIAUser $account): \Psr\Http\Message\ResponseInterface
@@ -98,6 +103,9 @@ trait JwtHelper
         }
         if(array_key_exists('expire', $config)){
             $this->expire = $config['expire'];
+        }
+        if(array_key_exists('valid_status', $config) && $config['valid_status'] === true){
+            $this->validStatus = $config['valid_status'];
         }
     }
 }
