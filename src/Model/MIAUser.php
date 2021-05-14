@@ -114,6 +114,15 @@ class MIAUser extends \Illuminate\Database\Eloquent\Model
     }
 
     /**
+    * 
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function roleo()
+    {
+        return $this->belongsTo(MIARole::class, 'role');
+    }
+
+    /**
      * 
      * @return void
      */

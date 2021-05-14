@@ -3,13 +3,12 @@
 namespace Mia\Auth\Handler\Role;
 
 use Mia\Auth\Model\MIARole;
-use Mia\Auth\Repository\MIARoleRepository;
 
 /**
  * Description of ListHandler
  * 
  * @OA\Get(
- *     path="/mia-auth/role/list",
+ *     path="/mia-auth/role/all",
  *     summary="Get all roles",
  *     @OA\Response(
  *          response=200,
@@ -20,15 +19,13 @@ use Mia\Auth\Repository\MIARoleRepository;
  *
  * @author matiascamiletti
  */
-class ListHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
+class AllHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
 {
     public function handle(\Psr\Http\Message\ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
-        // Configurar query
-        $configure = new \Mia\Database\Query\Configure($this, $request);
         // Obtenemos información
-        $rows = MIARoleRepository::fetchByConfigure($configure);
-        // Devolvemos respuesta
+        $rows = MIARole::orderBy('title', 'asc')->get();
+        // Devolvemos datos del usuario
         return new \Mia\Core\Diactoros\MiaJsonResponse($rows->toArray());
     }
 }
