@@ -1,7 +1,7 @@
 {
     "name": "agencycoda/mia-auth-mezzio",
     "description": "The library for Mezzio",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [{
