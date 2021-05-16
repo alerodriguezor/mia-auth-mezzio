@@ -28,6 +28,9 @@ class VerifiedInviteHandler extends \Mia\Core\Request\MiaRequestHandler
         if($recovery === null){
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'The token is incorrect');
         }
+        if($recovery->status != \Mia\Auth\Model\MIAInvite::STATUS_PENDING){
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'The token is incorrect');
+        }
         $recovery->status = \Mia\Auth\Model\MIAInvite::STATUS_USED;
         $recovery->save();
         // Guardar nuevo estado
