@@ -17,7 +17,7 @@ class ListHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         $config = MIAUserNotificationConfig::where('user_id', $user->id)->get()->toArray();
         // For each
         for ($i = 0; $i < count($nots); $i++) { 
-            for ($j = 0; $j < count($config); $i++) { 
+            for ($j = 0; $j < count($config); $j++) { 
                 if($config[$j]['type_id'] == $nots[$i]['id']){
                     $nots[$i]['has_email'] = $config[$j]['has_email'];
                     $nots[$i]['has_sms'] = $config[$j]['has_sms'];
