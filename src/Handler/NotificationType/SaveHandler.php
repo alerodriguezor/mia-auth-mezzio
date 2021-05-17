@@ -25,6 +25,7 @@ class SaveHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         $config->has_whatsapp = $this->getParam($request, 'has_whatsapp', 1);
         $config->has_web = $this->getParam($request, 'has_web', 1);
         $config->has_mobile = $this->getParam($request, 'has_mobile', 1);
+        $config->save();
         // Devolvemos respuesta
         return new \Mia\Core\Diactoros\MiaJsonResponse(true);
     }
