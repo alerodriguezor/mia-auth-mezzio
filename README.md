@@ -45,6 +45,8 @@ $user = $request->getAttribute(\Mia\Auth\Model\MIAUser::class);
     $app->route('/mia-notification/list', [\Mia\Auth\Handler\AuthHandler::class, Mia\Auth\Handler\Notification\ListHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_notification.list');
     $app->route('/mia-notification/read', [\Mia\Auth\Handler\AuthHandler::class, Mia\Auth\Handler\Notification\ReadHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_notification.read');
     $app->route('/mia-notification/read-all', [\Mia\Auth\Handler\AuthHandler::class, Mia\Auth\Handler\Notification\ReadAllHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_notification.read-all');
+    $app->route('/mia-notification/types', [\Mia\Auth\Handler\AuthHandler::class, Mia\Auth\Handler\NotificationType\ListHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_notification.types');
+    $app->route('/mia-notification/save-config-type', [\Mia\Auth\Handler\AuthHandler::class, Mia\Auth\Handler\NotificationType\SaveHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_notification.save-config-type');
 
     $app->route('/user/list', [\Mia\Auth\Handler\AuthHandler::class, new \Mia\Auth\Middleware\MiaRoleAuthMiddleware([MIAUser::ROLE_ADMIN]), \Mia\Auth\Handler\User\ListHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'user.list');
     $app->route('/user/block', [\Mia\Auth\Handler\AuthHandler::class, new \Mia\Auth\Middleware\MiaRoleAuthMiddleware([MIAUser::ROLE_ADMIN]), \Mia\Auth\Handler\User\BlockHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'user.block');
