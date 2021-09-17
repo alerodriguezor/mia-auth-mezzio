@@ -10,6 +10,13 @@ namespace Mia\Auth\Handler;
  */
 class VerifiedEmailHandler extends \Mia\Core\Request\MiaRequestHandler
 {
+    protected $sendMail = false;
+    
+    public function __construct($sendMail = false)
+    {
+        $this->sendMail = $sendMail;
+    }
+
     public function handle(\Psr\Http\Message\ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
         // Obtener parametros obligatorios
@@ -30,6 +37,18 @@ class VerifiedEmailHandler extends \Mia\Core\Request\MiaRequestHandler
         // Guardar nuevo estado
         $account->status = 1;
         $account->save();
+
+        if($this->sendMail){
+            $lang = $this->getParam($request, 'lang', 'en');
+            /* @var $sendgrid \Mobileia\Expressive\Mail\Service\Sendgrid */
+            $sendgrid = $request->getAttribute('Sendgrid');
+            $sendgrid->send($account->email, 'welcome-' . $lang, [
+                'firstname' => $account->firstname,
+                'email' => $account->email,
+                'account' => $account
+            ]);
+        }
+
         // Devolvemos datos del usuario
         return new \Mia\Core\Diactoros\MiaJsonResponse(true);
     }
