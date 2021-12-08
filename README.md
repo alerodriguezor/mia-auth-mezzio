@@ -26,12 +26,13 @@ $user = $request->getAttribute(\Mia\Auth\Model\MIAUser::class);
 5. Activar Autenticación interna, agregando las rutas:
 ```php
     /** AUTHENTICATION **/
-    $app->route('/mia-auth/login', [Mia\Expressive\Auth\Handler\LoginInternalHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.login');
+    $app->route('/mia-auth/login', [Mia\Auth\Handler\LoginInternalHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.login');
     $app->route('/mia-auth/register', [\Mia\Mail\Handler\SendgridHandler::class, new \Mia\Auth\Handler\RegisterInternalHandler(true)], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.register');
     $app->route('/mia-auth/update-profile', [\Mia\Auth\Handler\AuthHandler::class, Mia\Auth\Handler\UpdateProfileHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.update-profile');
     $app->route('/mia-auth/recovery', [\Mia\Mail\Handler\SendgridHandler::class, Mia\Auth\Handler\MiaRecoveryHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.recovery');
     $app->route('/mia-auth/change-password-recovery', [Mia\Auth\Handler\MiaPasswordRecoveryHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.change-password-recovery');
     $app->route('/mia-auth/me', [\Mia\Auth\Handler\AuthInternalHandler::class, Mia\Auth\Handler\FetchProfileHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.me');
+    //$app->route('/mia-auth/generate-test-token', [\Mia\Auth\Handler\User\GenerateTestTokenHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.generate-test-token');
     
 
     $app->route('/mia-auth/login-with-google', [Mia\Auth\Handler\Social\GoogleSignInHandler::class], ['POST', 'OPTIONS', 'HEAD'], 'mia_auth.login-with-gogle');
