@@ -35,7 +35,8 @@ class ChangeEmailHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         
         /* @var $sendgrid \Mia\Mail\Service\Sendgrid */
         $sendgrid = $request->getAttribute('Sendgrid');
-        $result = $sendgrid->send($newEmail, 'change-email', [
+        $lang = $this->getParam($request, 'lang', 'en');
+        $result = $sendgrid->send($newEmail, 'change-email-' . $lang, [
             'firstname' => $user->firstname,
             'lastname' => $user->lastname,
             'email_old' => $user->email,
