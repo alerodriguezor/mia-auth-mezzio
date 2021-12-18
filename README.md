@@ -32,7 +32,7 @@ $user = $request->getAttribute(\Mia\Auth\Model\MIAUser::class);
     $app->route('/mia-auth/recovery', [\Mia\Mail\Handler\SendgridHandler::class, Mia\Auth\Handler\MiaRecoveryHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.recovery');
     $app->route('/mia-auth/change-password-recovery', [Mia\Auth\Handler\MiaPasswordRecoveryHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.change-password-recovery');
     $app->route('/mia-auth/me', [\Mia\Auth\Handler\AuthInternalHandler::class, Mia\Auth\Handler\FetchProfileHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.me');
-    $app->route('/mia-auth/change-email', [\Mia\Mail\Handler\SendgridHandler::class, Mia\Auth\Handler\Me\ChangeEmailHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.change-email');
+    $app->route('/mia-auth/change-email', [\Mia\Auth\Handler\AuthHandler::class, \Mia\Mail\Handler\SendgridHandler::class, Mia\Auth\Handler\Me\ChangeEmailHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.change-email');
     $app->route('/mia-auth/verified-change-email', [Mia\Auth\Handler\Me\VerifiedChangeEmailHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.verified-change-email');
     //$app->route('/mia-auth/generate-test-token', [\Mia\Auth\Handler\User\GenerateTestTokenHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.generate-test-token');
     
