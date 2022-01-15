@@ -13,6 +13,7 @@ class MIAProvider extends \Illuminate\Database\Eloquent\Model
     const PROVIDER_APPLE = 2;
     const PROVIDER_FACEBOOK = 3;
     const PROVIDER_TWITTER = 4;
+    const PROVIDER_WHATSAPP = 5;
     
     protected $table = 'mia_provider';
 }
