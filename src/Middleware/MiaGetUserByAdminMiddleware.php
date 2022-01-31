@@ -20,7 +20,7 @@ class MiaGetUserByAdminMiddleware extends MiaAuthMiddleware
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-100, 'Your has not permission.');
         }
         // Get Param
-        $userId = $this->getParam($request, 'user_id', '');
+        $userId = $this->getParam($request, 'user_id', null) ? $this->getParam($request, 'user_id', null) : $this->getParam($request, 'id', null);
         // Get User 
         $editUser = \Mia\Auth\Repository\MIAUserRepository::findByID($userId);
         if($editUser == null){
