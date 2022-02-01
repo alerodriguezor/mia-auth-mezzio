@@ -8,7 +8,7 @@ use Mia\Auth\Model\MIAProvider;
  * Description of GoogleSignInHandler
  * 
  * @OA\Post(
- *     path="/mia-auth/login-with-google",
+ *     path="/mia-auth/login-with-facebook",
  *     summary="Get all data",
  *     @OA\Response(
  *          response=200,
@@ -19,7 +19,7 @@ use Mia\Auth\Model\MIAProvider;
  *
  * @author matiascamiletti
  */
-class GoogleSignInHandler extends FirebaseSignInHandler
+class FacebookSignInHandler extends FirebaseSignInHandler
 {
-    protected $providerId = MIAProvider::PROVIDER_GOOGLE;
+    protected $providerId = MIAProvider::PROVIDER_FACEBOOK;
 }

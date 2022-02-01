@@ -38,6 +38,7 @@ $user = $request->getAttribute(\Mia\Auth\Model\MIAUser::class);
     
 
     $app->route('/mia-auth/login-with-google', [Mia\Auth\Handler\Social\GoogleSignInHandler::class], ['POST', 'OPTIONS', 'HEAD'], 'mia_auth.login-with-gogle');
+    $app->route('/mia-auth/login-with-facebook', [Mia\Auth\Handler\Social\FacebookSignInHandler::class], ['POST', 'OPTIONS', 'HEAD'], 'mia_auth.login-with-facebook');
     $app->route('/mia-auth/apple-signin', [Mia\Auth\Handler\AppleSignInHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.apple-signin');
     $app->route('/mia-auth/register-device', [\Mia\Auth\Handler\AuthInternalHandler::class, Mia\Auth\Handler\RegisterDeviceHandler::class], ['GET', 'POST', 'OPTIONS', 'HEAD'], 'mia_auth.register-device');
 
