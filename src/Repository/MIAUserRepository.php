@@ -49,4 +49,17 @@ class MIAUserRepository
         }
         return $row->total;
     }
+
+    public static function totalsByKey($from, $to, $key, $value)
+    {
+        $row = \Mia\Auth\Model\MIAUser::
+                selectRaw('COUNT(*) as total')
+                ->whereRaw('DATE(created_at) >= DATE(?) AND DATE(created_at) <= DATE(?)', [$from, $to])
+                ->where($key, $value)
+                ->first();
+        if($row === null||$row->total == null){
+            return 0;
+        }
+        return $row->total;
+    }
 }
