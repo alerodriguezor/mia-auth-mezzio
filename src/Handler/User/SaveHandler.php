@@ -28,10 +28,12 @@ class SaveHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
      * @var array
      */
     protected $extras = [];
+    protected $allowNew = false;
     
-    public function __construct($extras = [])
+    public function __construct($extras = [], $allowNew = false)
     {
         $this->extras = $extras;
+        $this->allowNew = $allowNew;
     }
 
     public function handle(\Psr\Http\Message\ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
@@ -41,8 +43,10 @@ class SaveHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         // Buscar si existe el tour en la DB
         $item = MIAUser::find($itemId);
         // verificar si existe
-        if($item === null){
+        if($item === null && $this->allowNew == false){
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(1, 'The element is not exist.');
+        } else if ($item === null && $this->allowNew) {
+            $item = new MIAUser();
         }
         // Guardamos data
         $item->firstname = $this->getParam($request, 'firstname', '');
