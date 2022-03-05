@@ -36,6 +36,7 @@ class ConfigProvider
 
                 \Mia\Auth\Handler\Social\GoogleSignInHandler::class => \Mia\Auth\Factory\GoogleSignInHandlerFactory::class,
                 \Mia\Auth\Handler\Social\FacebookSignInHandler::class => \Mia\Auth\Factory\FacebookSignInHandlerFactory::class,
+                \Mia\Auth\Handler\Social\AppleSignInHandler::class => \Mia\Auth\Factory\AppleSignInHandlerFactory::class,
 
                 \Mia\Auth\Handler\Social\PhoneSignInHandler::class => \Mia\Auth\Factory\PhoneSignInHandlerFactory::class,
             ],
