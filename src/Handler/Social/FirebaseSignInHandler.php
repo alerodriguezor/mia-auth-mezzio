@@ -55,7 +55,12 @@ class FirebaseSignInHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
             return new MiaJsonErrorResponse(-2, 'Token is incorrect');
         }
         // Buscamos si este email tiene cuenta de Google
-        $account = MIAUser::where('email', $user->email)->first();
+        $email = $user->email;
+        if($email == null){
+            $email = $user->uid . '@social.app';
+        }
+
+        $account = MIAUser::where('email', $email)->first();
         if($account === null){
             $account = $this->createAccount($user);
         }
@@ -72,7 +77,13 @@ class FirebaseSignInHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         $account = new \Mia\Auth\Model\MIAUser();
         $account->firstname = $nameData[0];
         $account->lastname = $nameData[1];
-        $account->email = $user->email;
+
+        $email = $user->email;
+        if($email == null){
+            $email = $user->uid . '@social.app';
+        }
+        $account->email = $email;
+
         $account->phone = $user->phoneNumber;
         $account->photo = $user->photoUrl;
         $account->password = 'password_not_assigned';
