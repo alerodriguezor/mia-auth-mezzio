@@ -61,12 +61,12 @@ class SignInWithCodeHandler extends \Mia\Core\Request\MiaRequestHandler
         // Verificar si ya existe la cuenta
         $account = \Mia\Auth\Model\MIAUser::where('email', $email)->first();
         if($account === null){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, 'This account does not exist');
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, 'This account does not exist');
         }
         // Verify if exist code valid
         $codeExist = MiaUserCode::where('user_id', $account->id)->where('code', $code)->where('status', MiaUserCode::STATUS_PENDING)->first();
         if($codeExist === null){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, 'This code is invalid');
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, 'This code is invalid');
         }
         // Valid if user is active
         if($this->validStatus && $account->status == MIAUser::STATUS_PENDING){

@@ -52,7 +52,7 @@ class FirebaseSignInHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
     {
         $user = $this->service->verifyIdToken($this->getParam($request, 'token', ''));
         if($user === null){
-            return new MiaJsonErrorResponse(-2, 'Token is incorrect');
+            return new MiaJsonErrorResponse(-3, 'Token is incorrect');
         }
         // Buscamos si este email tiene cuenta de Google
         $email = $user->email;

@@ -33,7 +33,7 @@ class GenerateTestTokenHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         try {
             $accessToken = $this->generateToken($account->id, $account->email);
         } catch (\Exception $th) {
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, 'Problem with generate token');
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, 'Problem with generate token');
         }
 
         $data = $account->toArray();

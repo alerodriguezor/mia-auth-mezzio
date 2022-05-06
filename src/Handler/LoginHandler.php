@@ -60,7 +60,7 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
         // Verificar si ya existe la cuenta
         $account = \Mia\Auth\Model\MIAUser::where('email', $email)->first();
         if($account === null){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, 'This account does not exist');
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, 'This account does not exist');
         }
         // Verificar si la contraseña coincide
         if(!\Mia\Auth\Model\MIAUser::verifyPassword($password, $account->password)){

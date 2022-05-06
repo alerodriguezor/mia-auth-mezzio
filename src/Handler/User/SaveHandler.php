@@ -84,7 +84,7 @@ class SaveHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         try {
             $item->save();
         } catch (\Exception $exc) {
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-2, $exc->getMessage());
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, $exc->getMessage());
         }
 
         // Devolvemos respuesta
