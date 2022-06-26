@@ -4,6 +4,7 @@ namespace Mia\Auth\Handler;
 
 use Mia\Auth\Helper\JwtHelper;
 use Mia\Auth\Model\MIAUser;
+use Mia\Core\Helper\MiaErrorHelper;
 
 /**
  * Description of LoginHandler
@@ -60,17 +61,17 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
         // Verificar si ya existe la cuenta
         $account = \Mia\Auth\Model\MIAUser::where('email', $email)->first();
         if($account === null){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, 'This account does not exist');
+            return MiaErrorHelper::toLangEs($request, -3, 'Esta cuenta no existe', 'This account does not exist');
         }
         // Verificar si la contraseña coincide
         if(!\Mia\Auth\Model\MIAUser::verifyPassword($password, $account->password)){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-3, 'Password is not correct');
+            return MiaErrorHelper::toLangEs($request, -3, 'La contraseña es incorrecta', 'Password is not correct');
         }
         // Valid if user is active
         if($this->validStatus && $account->status == MIAUser::STATUS_PENDING){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-4, 'Your account is not active.');
+            return MiaErrorHelper::toLangEs($request, -4, 'Tu cuenta no esta activa', 'Your account is not active.');
         }else if($this->validStatus && $account->status == MIAUser::STATUS_BLOCKED){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-5, 'Your account is blocked.');
+            return MiaErrorHelper::toLangEs($request, -5, 'Tu cuenta esta bloqueada', 'Your account is blocked.');
         }
         // Verify method
         if($this->method == 'jwt'){
