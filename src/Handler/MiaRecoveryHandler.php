@@ -64,7 +64,7 @@ class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
         ]);
 
         if($result === false){
-            return new \Mia\Core\Diactoros\MiaJsonResponse(false);
+            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-15, 'No se ha podido enviar el email');
         }
 
         // Devolvemos datos del usuario
