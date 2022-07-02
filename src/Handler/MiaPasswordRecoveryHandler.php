@@ -21,7 +21,7 @@ class MiaPasswordRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'No existe este mail');
         }
         // Buscar si existe el token
-        $recovery = \Mia\Auth\Model\MIARecovery::where('user_id', $account->id)->where('token', $token)->first();
+        $recovery = \Mia\Auth\Model\MIARecovery::where('user_id', $account->id)->where('token', $token)->where('status', \Mia\Auth\Model\MIARecovery::STATUS_PENDING)->first();
         if($recovery === null){
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'El token es incorrecto');
         }
