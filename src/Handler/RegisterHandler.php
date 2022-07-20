@@ -75,6 +75,7 @@ class RegisterHandler extends \Mia\Core\Request\MiaRequestHandler
             $sendgrid->send($account->email, 'new-user', [
                 'firstname' => $account->firstname,
                 'email' => $account->email,
+                'email_encoded' => urlencode($account->email),
                 'account' => $account,
                 'token' => $token
             ]);
