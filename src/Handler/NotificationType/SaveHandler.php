@@ -14,7 +14,7 @@ class SaveHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         // Get param
         $typeId = $this->getParam($request, 'type_id', 0);
         // Get All for user
-        $config = MIAUserNotificationConfig::where('user_id', $user->id)->where('type_id')->first();
+        $config = MIAUserNotificationConfig::where('user_id', $user->id)->where('type_id', $typeId)->first();
         if($config === null){
             $config = new MIAUserNotificationConfig();
             $config->user_id = $user->id;
