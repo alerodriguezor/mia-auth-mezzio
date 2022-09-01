@@ -17,7 +17,7 @@ class RegisterDeviceHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         // Obtener usuario
         $user = $this->getUser($request);
         // Registrar nuevo token
-        $device = \Mia\Auth\Model\MIADevice::where('user_id', $user->id)->where('type', $type)->first();
+        $device = \Mia\Auth\Model\MIADevice::where('user_id', $user->id)->where('device_type', $type)->first();
         if($device === null){
             $device = new \Mia\Auth\Model\MIADevice();
             $device->user_id = $user->id;
