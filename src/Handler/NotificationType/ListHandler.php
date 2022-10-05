@@ -15,6 +15,18 @@ class ListHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         $nots = MIANotificationType::all()->toArray();
         // Get All for user
         $config = MIAUserNotificationConfig::where('user_id', $user->id)->get()->toArray();
+        // Create config is empty
+        if(count($config) == 0 && count($nots) > 0){
+            for ($i = 0; $i < count($nots); $i++) { 
+                $config = new MIAUserNotificationConfig();
+                $config->user_id = $user->id;
+                $config->type_id = $nots[$i]['id'];
+                $config->save();
+            }
+            
+            // Refresh
+            $config = MIAUserNotificationConfig::where('user_id', $user->id)->get()->toArray();
+        }
         // For each
         for ($i = 0; $i < count($nots); $i++) { 
             for ($j = 0; $j < count($config); $j++) { 
