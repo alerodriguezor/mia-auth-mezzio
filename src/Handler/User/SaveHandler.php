@@ -47,6 +47,7 @@ class SaveHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(1, 'The element is not exist.');
         } else if ($item === null && $this->allowNew) {
             $item = new MIAUser();
+            $item->status = MIAUser::STATUS_ACTIVE;
         }
         // Guardamos data
         $item->firstname = $this->getParam($request, 'firstname', '');
