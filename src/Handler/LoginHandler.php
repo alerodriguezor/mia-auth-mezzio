@@ -69,7 +69,7 @@ class LoginHandler extends \Mia\Core\Request\MiaRequestHandler
         }
         // Valid if user is active
         if($this->validStatus && $account->status == MIAUser::STATUS_PENDING){
-            return MiaErrorHelper::toLangEs($request, -4, 'Tu cuenta no esta activa', 'Your account is not active.');
+            return MiaErrorHelper::toLangEs($request, -4, 'Tu cuenta no está activa', 'Your account is not active.');
         }else if($this->validStatus && $account->status == MIAUser::STATUS_BLOCKED){
             return MiaErrorHelper::toLangEs($request, -5, 'Tu cuenta esta bloqueada', 'Your account is blocked.');
         }
