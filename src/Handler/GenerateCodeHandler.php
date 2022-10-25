@@ -61,6 +61,7 @@ class GenerateCodeHandler extends \Mia\Core\Request\MiaRequestHandler
         $result = $sendgrid->send($account->email, 'send-code', [
             'firstname' => $account->firstname,
             'email' => $account->email,
+            'email_encoded' => urlencode($account->email),
             'code' => $code->code
         ]);
 

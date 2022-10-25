@@ -41,6 +41,7 @@ class ChangeEmailHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
             'lastname' => $user->lastname,
             'email_old' => $user->email,
             'email' => $newEmail,
+            'email_encoded' => urlencode($newEmail),
             'token' => $token
         ]);
 

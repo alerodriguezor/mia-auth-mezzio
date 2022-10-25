@@ -45,6 +45,7 @@ class VerifiedEmailHandler extends \Mia\Core\Request\MiaRequestHandler
             $sendgrid->send($account->email, 'welcome-' . $lang, [
                 'firstname' => $account->firstname,
                 'email' => $account->email,
+                'email_encoded' => urlencode($account->email),
                 'account' => $account
             ]);
         }

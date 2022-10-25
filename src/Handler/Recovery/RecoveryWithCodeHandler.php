@@ -38,6 +38,7 @@ class RecoveryWithCodeHandler extends \Mia\Core\Request\MiaRequestHandler
         $result = $sendgrid->send($account->email, 'recovery-password-with-code', [
             'firstname' => $account->firstname,
             'email' => $account->email,
+            'email_encoded' => urlencode($account->email),
             'code' => $code
         ]);
 

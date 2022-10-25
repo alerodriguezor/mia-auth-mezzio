@@ -60,6 +60,7 @@ class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
         $result = $sendgrid->send($account->email, 'recovery-password', [
             'firstname' => $account->firstname,
             'email' => $account->email,
+            'email_encoded' => urlencode($account->email),
             'token' => $token
         ]);
 
