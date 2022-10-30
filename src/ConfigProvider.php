@@ -33,6 +33,7 @@ class ConfigProvider
                 \Mia\Auth\Handler\AuthOptionalHandler::class => \Mia\Auth\Factory\AuthOptionalHandlerFactory::class,
                 \Mia\Auth\Handler\LoginHandler::class => \Mia\Auth\Factory\LoginHandlerFactory::class,
                 \Mia\Auth\Handler\SignInWithCodeHandler::class => \Mia\Auth\Factory\SignInWithCodeHandlerFactory::class,
+                \Mia\Auth\Handler\MiaRecoveryHandler::class => \Mia\Auth\Factory\MiaRecoveryHandlerFactory::class,
 
                 \Mia\Auth\Handler\Social\GoogleSignInHandler::class => \Mia\Auth\Factory\GoogleSignInHandlerFactory::class,
                 \Mia\Auth\Handler\Social\FacebookSignInHandler::class => \Mia\Auth\Factory\FacebookSignInHandlerFactory::class,

@@ -2,6 +2,9 @@
 
 namespace Mia\Auth\Handler;
 
+use Mia\Auth\Helper\JwtHelper;
+use Mia\Auth\Model\MIAUser;
+
 /**
  * Description of MiaRecoveryHanlder
  * 
@@ -35,6 +38,14 @@ namespace Mia\Auth\Handler;
  */
 class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
 {
+    use JwtHelper;
+
+    public function __construct($config)
+    {
+        // Setear configuración inicial
+        $this->setConfig($config);
+    }
+
     public function handle(\Psr\Http\Message\ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
         // Obtener parametros obligatorios
@@ -48,6 +59,14 @@ class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
         if($account->deleted == 1){
             return new \Mia\Core\Diactoros\MiaJsonResponse(true);
             //return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'This account not exist.');
+        }
+        // Valid if user is active
+        if($this->validStatus && $account->status == MIAUser::STATUS_PENDING){
+            return new \Mia\Core\Diactoros\MiaJsonResponse(true);
+            //return MiaErrorHelper::toLangEs($request, -4, 'Tu cuenta no está activa', 'Your account is not active.');
+        }else if($this->validStatus && $account->status == MIAUser::STATUS_BLOCKED){
+            return new \Mia\Core\Diactoros\MiaJsonResponse(true);
+            //return MiaErrorHelper::toLangEs($request, -5, 'Tu cuenta esta bloqueada', 'Your account is blocked.');
         }
         // Generar registro de token
         $token = \Mia\Auth\Model\MIAUser::encryptPassword($email . '_' . time() . '_' . $email);

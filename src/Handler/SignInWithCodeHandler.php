@@ -7,7 +7,7 @@ use Mia\Auth\Model\MIAUser;
 use Mia\Auth\Model\MiaUserCode;
 
 /**
- * Description of LoginHandler
+ * Description of SignInWithCodeHandler
  * 
  * @OA\Post(
  *     path="/mia-auth/login",
