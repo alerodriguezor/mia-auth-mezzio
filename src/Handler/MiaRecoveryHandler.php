@@ -42,10 +42,12 @@ class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
         // Verificar si ya existe la cuenta
         $account = \Mia\Auth\Model\MIAUser::where('email', $email)->first();
         if($account === null){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'Este email no existe');
+            return new \Mia\Core\Diactoros\MiaJsonResponse(true);
+            //return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'Este email no existe');
         }
         if($account->deleted == 1){
-            return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'This account not exist.');
+            return new \Mia\Core\Diactoros\MiaJsonResponse(true);
+            //return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-1, 'This account not exist.');
         }
         // Generar registro de token
         $token = \Mia\Auth\Model\MIAUser::encryptPassword($email . '_' . time() . '_' . $email);
@@ -64,9 +66,10 @@ class MiaRecoveryHandler extends \Mia\Core\Request\MiaRequestHandler
             'token' => $token
         ]);
 
-        if($result === false){
+        /*if($result === false){
+            return new \Mia\Core\Diactoros\MiaJsonResponse(true);
             return new \Mia\Core\Diactoros\MiaJsonErrorResponse(-15, 'No se ha podido enviar el email');
-        }
+        }*/
 
         // Devolvemos datos del usuario
         return new \Mia\Core\Diactoros\MiaJsonResponse(true);
