@@ -64,6 +64,10 @@ class AuthHandler extends \Mia\Core\Middleware\MiaBaseMiddleware
         } catch (\Exception $th) {
             return new MiaJsonErrorResponse(-2, 'Authorization failed');
         }
+        // Verify if exist
+        if($user === null){
+            return new MiaJsonErrorResponse(-2, 'Authorization failed');
+        }
         // Obtener Usuario para guardarlo
         return $handler->handle($request->withAttribute(\Mia\Auth\Model\MIAUser::class, $user));
     }
