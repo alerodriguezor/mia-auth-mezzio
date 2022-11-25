@@ -57,6 +57,9 @@ class FirebaseSignInHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         // Buscamos si este email tiene cuenta de Google
         $email = $user->email;
         if($email == null){
+            $email = $user->providerData[0]->email;
+        }
+        if($email == null){
             $email = $user->uid . '@social.app';
         }
 
@@ -79,6 +82,9 @@ class FirebaseSignInHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         $account->lastname = $nameData[1];
 
         $email = $user->email;
+        if($email == null){
+            $email = $user->providerData[0]->email;
+        }
         if($email == null){
             $email = $user->uid . '@social.app';
         }
