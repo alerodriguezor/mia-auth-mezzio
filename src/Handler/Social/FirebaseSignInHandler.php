@@ -94,6 +94,7 @@ class FirebaseSignInHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
         $account->photo = $user->photoUrl;
         $account->password = 'password_not_assigned';
         $account->role = \Mia\Auth\Model\MIAUser::ROLE_GENERAL;
+        $account->status = \Mia\Auth\Model\MIAUser::STATUS_ACTIVE;
         $account->save();
 
         return $account;
