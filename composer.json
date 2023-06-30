@@ -14,7 +14,7 @@
         "agencycoda/mia-eloquent-mezzio": "dev-main",
         "laminas/laminas-crypt": "^3.3",
         "firebase/php-jwt": "5.2.1",
-        "kreait/firebase-php": "5.14.1",
+        "kreait/firebase-php": ">=7.5.1",
         "lcobucci/jwt": "4.0.4"
     },
     "autoload": {
