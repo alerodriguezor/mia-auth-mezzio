@@ -3,6 +3,7 @@
 namespace Mia\Auth\Helper;
 
 use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 /**
  * Description of MiaAuthMiddleware
@@ -80,7 +81,7 @@ trait JwtHelper
      */
     public function decodeToken($token)
     {
-        return JWT::decode($token, $this->key);
+        return JWT::decode($token, new Key($this->key, 'HS256'));
     }
 
     /**
