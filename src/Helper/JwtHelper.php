@@ -73,7 +73,7 @@ trait JwtHelper
                 'id' => $userId,
                 'email' => $email
             )
-        ), $this->key);
+        ), $this->key, 'HS256');
     }
     /**
      * 
