@@ -80,7 +80,7 @@ trait JwtHelper
      */
     public function decodeToken($token)
     {
-        return JWT::decode($token, $this->key, array('HS256'));
+        return JWT::decode($token, $this->key);
     }
 
     /**
